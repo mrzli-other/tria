@@ -1,0 +1,41 @@
+
+background.png
+size: 758,816
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+background
+  rotate: false
+  xy: 2, 14
+  size: 600, 800
+  orig: 600, 800
+  offset: 0, 0
+  index: -1
+backgroundplatform
+  rotate: false
+  xy: 454, 2
+  size: 40, 10
+  orig: 40, 10
+  offset: 0, 0
+  index: -1
+foregroundsideleft
+  rotate: false
+  xy: 604, 14
+  size: 75, 800
+  orig: 75, 800
+  offset: 0, 0
+  index: -1
+foregroundsideright
+  rotate: false
+  xy: 681, 14
+  size: 75, 800
+  orig: 75, 800
+  offset: 0, 0
+  index: -1
+scoreline
+  rotate: false
+  xy: 2, 10
+  size: 450, 2
+  orig: 450, 2
+  offset: 0, 0
+  index: -1

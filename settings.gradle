@@ -1,0 +1,2 @@
+include 'desktop', 'android', 'core', 'gamelibrary'
+project(':gamelibrary').projectDir = new File('../LibgdxGameLibrary')

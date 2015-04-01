@@ -1,0 +1,371 @@
+
+gui.png
+size: 1006,709
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+credits/companylogo
+  rotate: false
+  xy: 906, 643
+  size: 92, 64
+  orig: 92, 64
+  offset: 0, 0
+  index: -1
+credits/libgdxlogo
+  rotate: false
+  xy: 454, 5
+  size: 124, 44
+  orig: 124, 44
+  offset: 0, 0
+  index: -1
+howtoplay/charactercontrol
+  rotate: false
+  xy: 2, 55
+  size: 450, 150
+  orig: 450, 150
+  offset: 0, 0
+  index: -1
+howtoplay/enemies
+  rotate: false
+  xy: 454, 357
+  size: 450, 350
+  orig: 450, 350
+  offset: 0, 0
+  index: -1
+howtoplay/gothroughsides
+  rotate: false
+  xy: 2, 207
+  size: 450, 500
+  orig: 450, 500
+  offset: 0, 0
+  index: -1
+howtoplay/items
+  rotate: false
+  xy: 454, 205
+  size: 450, 150
+  orig: 450, 150
+  offset: 0, 0
+  index: -1
+mainmenu/creditsbutton
+  rotate: false
+  xy: 906, 577
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+mainmenu/facebookloginbutton
+  rotate: false
+  xy: 454, 51
+  size: 136, 64
+  orig: 136, 64
+  offset: 0, 0
+  index: -1
+mainmenu/facebookloginbuttondisabled
+  rotate: false
+  xy: 592, 51
+  size: 136, 64
+  orig: 136, 64
+  offset: 0, 0
+  index: -1
+mainmenu/facebooklogoutbutton
+  rotate: false
+  xy: 730, 51
+  size: 136, 64
+  orig: 136, 64
+  offset: 0, 0
+  index: -1
+mainmenu/facebooklogoutbuttondisabled
+  rotate: false
+  xy: 868, 51
+  size: 136, 64
+  orig: 136, 64
+  offset: 0, 0
+  index: -1
+mainmenu/instructionsbutton
+  rotate: false
+  xy: 906, 511
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+mainmenu/instructionsbuttonhighlight
+  rotate: false
+  xy: 906, 445
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+mainmenu/newsbutton
+  rotate: false
+  xy: 906, 379
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+mainmenu/newsbuttonhighlight
+  rotate: false
+  xy: 906, 313
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+news/newsseparator
+  rotate: false
+  xy: 454, 117
+  size: 450, 4
+  orig: 450, 4
+  offset: 0, 0
+  index: -1
+play/coins
+  rotate: false
+  xy: 972, 315
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+play/lives
+  rotate: false
+  xy: 978, 19
+  size: 20, 30
+  orig: 20, 30
+  offset: 0, 0
+  index: -1
+play/pause
+  rotate: false
+  xy: 580, 9
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+play/topbackground
+  rotate: false
+  xy: 2, 13
+  size: 450, 40
+  orig: 450, 40
+  offset: 0, 0
+  index: -1
+play/topline
+  rotate: false
+  xy: 2, 9
+  size: 450, 2
+  orig: 450, 2
+  offset: 0, 0
+  index: -1
+upgrade/upgradeitemantigravity
+  rotate: false
+  xy: 664, 23
+  size: 40, 26
+  orig: 40, 26
+  offset: 0, 0
+  index: -1
+upgrade/upgradeitemlife
+  rotate: false
+  xy: 906, 251
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+upgrade/upgradeitemrocket
+  rotate: false
+  xy: 622, 17
+  size: 40, 32
+  orig: 40, 32
+  offset: 0, 0
+  index: -1
+upgrade/upgradeitemselection
+  rotate: false
+  xy: 454, 123
+  size: 450, 80
+  orig: 450, 80
+  offset: 0, 0
+  index: -1
+upgrade/upgradelevelempty
+  rotate: false
+  xy: 906, 189
+  size: 30, 60
+  orig: 30, 60
+  offset: 0, 0
+  index: -1
+upgrade/upgradelevelfull
+  rotate: false
+  xy: 906, 127
+  size: 30, 60
+  orig: 30, 60
+  offset: 0, 0
+  index: -1
+waitanimation32
+  rotate: false
+  xy: 972, 609
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 0
+waitanimation32
+  rotate: false
+  xy: 972, 575
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+waitanimation32
+  rotate: false
+  xy: 972, 541
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
+waitanimation32
+  rotate: false
+  xy: 972, 507
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 3
+waitanimation32
+  rotate: false
+  xy: 972, 473
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 4
+waitanimation32
+  rotate: false
+  xy: 972, 439
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 5
+waitanimation32
+  rotate: false
+  xy: 972, 405
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 6
+waitanimation32
+  rotate: false
+  xy: 972, 371
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 7
+waitanimation32
+  rotate: false
+  xy: 972, 337
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 8
+waitanimation32
+  rotate: false
+  xy: 706, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 9
+waitanimation32
+  rotate: false
+  xy: 740, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 10
+waitanimation32
+  rotate: false
+  xy: 774, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 11
+waitanimation32
+  rotate: false
+  xy: 808, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 12
+waitanimation32
+  rotate: false
+  xy: 842, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 13
+waitanimation32
+  rotate: false
+  xy: 876, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 14
+waitanimation32
+  rotate: false
+  xy: 910, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 15
+waitanimation32
+  rotate: false
+  xy: 944, 17
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 16
+waitanimation32
+  rotate: false
+  xy: 948, 279
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 17
+waitanimation32
+  rotate: false
+  xy: 948, 245
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 18
+waitanimation32
+  rotate: false
+  xy: 938, 211
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 19
+waitanimation32
+  rotate: false
+  xy: 938, 177
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 20
+waitanimation32
+  rotate: false
+  xy: 938, 143
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 21
+waitanimation32
+  rotate: false
+  xy: 972, 211
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 22
+waitanimation32
+  rotate: false
+  xy: 972, 177
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 23
+whitenine
+  rotate: false
+  xy: 2, 2
+  size: 5, 5
+  split: 2, 2, 2, 2
+  orig: 5, 5
+  offset: 0, 0
+  index: -1

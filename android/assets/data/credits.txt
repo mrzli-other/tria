@@ -1,0 +1,20 @@
+CREATED BY: Goran Mržljak
+EMAIL: goran.mrzljak@gmail.com
+
+FONT: www.opensans.com
+
+ORIGINAL SOUNDS FROM
+freesound.org (user name, sound id):
+  Jump - Porphyr, 187567
+  Jump Boost - plingativator, 188869
+  Coin - fins, 146723
+  Item - cameronmusic, 138410
+  Ouch - under7dude, 163441
+  Saw - Benboncan, 60178
+  Spikes - qubodup, 166535
+  Fall - silversatyr, 113366
+  Rocket - genelythgow, 203264
+  AG - peridactyloptrix, 213384
+  
+FACEBOOK ICON:
+  simpleicon.com/facebook.html

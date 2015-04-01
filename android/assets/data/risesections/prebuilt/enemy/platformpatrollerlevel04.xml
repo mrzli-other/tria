@@ -1,0 +1,77 @@
+<risesection height="40" difficulty="8" transitionbefore="true" longtransitionafter="false" selectionweight="0.34">
+  <platforms>
+    <platform id="0" x="2.6" y="0" />
+    <platform id="1" x="6.15" y="4.27" />
+    <platform id="2" x="2.56" y="7.4" />
+    <platform id="3" x="1.12" y="3.77" />
+    <platform id="4" x="6" y="9" />
+    <platform id="5" x="0.6" y="12.5" />
+    <platform id="6" x="2.6" y="12.5" />
+    <platform id="7" x="8" y="9" />
+    <platform id="8" x="6.68" y="12.26" />
+    <platform id="9" x="3.5" y="17" />
+    <platform id="10" x="5.5" y="17" />
+    <platform id="11" x="7.5" y="17" />
+    <platform id="12" x="0.78" y="21.39" />
+    <platform id="13" x="7" y="20.64" />
+    <platform id="14" x="1.6" y="25.5" />
+    <platform id="15" x="3.6" y="25.5" />
+    <platform id="16" x="8.18" y="26.74" />
+    <platform id="17" x="2" y="31" />
+    <platform id="18" x="4" y="31" />
+    <platform id="19" x="6" y="31" />
+    <platform id="20" x="2.65" y="35.32" />
+    <platform id="21" x="7.9" y="34.57" />
+    <platform id="22" x="6.7" y="37.87" />
+  </platforms>
+  <items>
+    <item type="cointemplate" x="3.35" y="0.5" appearancechance="0.3" attachedtoplatformid="0" />
+    <item type="cointemplate" x="6.9" y="4.77" appearancechance="0.3" attachedtoplatformid="1" />
+    <item type="cointemplate" x="3.31" y="7.9" appearancechance="0.3" attachedtoplatformid="2" />
+    <item type="cointemplate" x="1.87" y="4.27" appearancechance="0.3" attachedtoplatformid="3" />
+    <item type="cointemplate" x="7.43" y="12.76" appearancechance="0.3" attachedtoplatformid="8" />
+    <item type="cointemplate" x="1.53" y="21.89" appearancechance="0.3" attachedtoplatformid="12" />
+    <item type="cointemplate" x="7.75" y="21.14" appearancechance="0.3" attachedtoplatformid="13" />
+    <item type="cointemplate" x="8.93" y="27.24" appearancechance="0.3" attachedtoplatformid="16" />
+    <item type="cointemplate" x="3.4" y="35.82" appearancechance="0.3" attachedtoplatformid="20" />
+    <item type="cointemplate" x="8.65" y="35.07" appearancechance="0.3" attachedtoplatformid="21" />
+    <item type="cointemplate" x="7.45" y="38.37" appearancechance="0.3" attachedtoplatformid="22" />
+  </items>
+  <enemies>
+    <enemy type="platformpatroller" x="0.5" y="13">
+      <properties>
+        <property name="range" value="2.75" />
+        <property name="speed" value="3.7" />
+        <property name="initialoffset" value="2" />
+      </properties>
+    </enemy>
+    <enemy type="platformpatroller" x="6" y="9.5">
+      <properties>
+        <property name="range" value="2.75" />
+        <property name="speed" value="4.4" />
+        <property name="initialoffset" value="2" />
+      </properties>
+    </enemy>
+    <enemy type="platformpatroller" x="3.5" y="17.5">
+      <properties>
+        <property name="range" value="4.75" />
+        <property name="speed" value="5.3" />
+        <property name="initialoffset" value="6" />
+      </properties>
+    </enemy>
+    <enemy type="platformpatroller" x="1.5" y="26">
+      <properties>
+        <property name="range" value="2.75" />
+        <property name="speed" value="4.5" />
+        <property name="initialoffset" value="4" />
+      </properties>
+    </enemy>
+    <enemy type="platformpatroller" x="2" y="31.5">
+      <properties>
+        <property name="range" value="4.75" />
+        <property name="speed" value="5.9" />
+        <property name="initialoffset" value="1" />
+      </properties>
+    </enemy>
+  </enemies>
+</risesection>

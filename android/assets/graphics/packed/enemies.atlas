@@ -1,0 +1,76 @@
+
+enemies.png
+size: 245,164
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+easepatroller
+  rotate: false
+  xy: 64, 17
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+eviltwin
+  rotate: false
+  xy: 203, 102
+  size: 40, 60
+  orig: 40, 60
+  offset: 0, 0
+  index: -1
+orbiter
+  rotate: false
+  xy: 2, 5
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+platformpatroller
+  rotate: false
+  xy: 99, 102
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+saw
+  rotate: false
+  xy: 2, 67
+  size: 95, 95
+  orig: 95, 95
+  offset: 0, 0
+  index: -1
+sinepatroller
+  rotate: false
+  xy: 151, 102
+  size: 50, 60
+  orig: 50, 60
+  offset: 0, 0
+  index: -1
+static00
+  rotate: false
+  xy: 114, 52
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+static01
+  rotate: false
+  xy: 164, 52
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+static02
+  rotate: false
+  xy: 114, 2
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+static03
+  rotate: false
+  xy: 164, 2
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1

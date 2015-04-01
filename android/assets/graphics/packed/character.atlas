@@ -1,0 +1,181 @@
+
+character.png
+size: 454,137
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+antigravityengine
+  rotate: false
+  xy: 236, 80
+  size: 40, 26
+  orig: 40, 26
+  offset: 0, 0
+  index: -1
+antigravityexhaustelement00
+  rotate: false
+  xy: 182, 84
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+antigravityexhaustelement01
+  rotate: false
+  xy: 104, 42
+  size: 64, 28
+  orig: 64, 28
+  offset: 0, 0
+  index: -1
+antigravityexhaustelement02
+  rotate: false
+  xy: 104, 72
+  size: 76, 34
+  orig: 76, 34
+  offset: 0, 0
+  index: -1
+arm
+  rotate: false
+  xy: 146, 14
+  size: 12, 26
+  orig: 12, 26
+  offset: 0, 0
+  index: -1
+autopickupline
+  rotate: false
+  xy: 2, 108
+  size: 450, 27
+  orig: 450, 27
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 278, 60
+  size: 40, 46
+  orig: 40, 46
+  offset: 0, 0
+  index: -1
+legs
+  rotate: false
+  xy: 214, 66
+  size: 20, 16
+  orig: 20, 16
+  offset: 0, 0
+  index: -1
+rocketengine
+  rotate: false
+  xy: 104, 8
+  size: 40, 32
+  orig: 40, 32
+  offset: 0, 0
+  index: -1
+rocketexhaust
+  rotate: false
+  xy: 320, 26
+  size: 30, 80
+  orig: 30, 80
+  offset: 0, 0
+  index: 0
+rocketexhaust
+  rotate: false
+  xy: 352, 26
+  size: 30, 80
+  orig: 30, 80
+  offset: 0, 0
+  index: 1
+rocketexhaust
+  rotate: false
+  xy: 384, 26
+  size: 30, 80
+  orig: 30, 80
+  offset: 0, 0
+  index: 2
+rocketexhaust
+  rotate: false
+  xy: 416, 26
+  size: 30, 80
+  orig: 30, 80
+  offset: 0, 0
+  index: 3
+rocketexhaust
+  rotate: false
+  xy: 182, 2
+  size: 30, 80
+  orig: 30, 80
+  offset: 0, 0
+  index: 4
+shieldeffect
+  rotate: false
+  xy: 2, 6
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+upgradedots
+  rotate: false
+  xy: 236, 68
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 0
+upgradedots
+  rotate: false
+  xy: 214, 54
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 1
+upgradedots
+  rotate: false
+  xy: 214, 42
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 2
+upgradedots
+  rotate: false
+  xy: 214, 30
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 3
+upgradedots
+  rotate: false
+  xy: 214, 18
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 4
+upgradedots
+  rotate: false
+  xy: 214, 6
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 5
+upgradedots
+  rotate: false
+  xy: 244, 56
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 6
+upgradedots
+  rotate: false
+  xy: 244, 44
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 7
+upgradedots
+  rotate: false
+  xy: 244, 32
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 8
+upgradedots
+  rotate: false
+  xy: 244, 20
+  size: 28, 10
+  orig: 28, 10
+  offset: 0, 0
+  index: 9

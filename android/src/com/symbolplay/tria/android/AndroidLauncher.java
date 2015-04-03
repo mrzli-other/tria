@@ -23,7 +23,7 @@ public class AndroidLauncher extends AndroidApplication {
         config.useCompass = false;
         
         PlatformSpecificAndroid platformSpecificAndroid = new PlatformSpecificAndroid(this);
-        facebookAndroid = new FacebookAndroid(this, savedInstanceState);
+        facebookAndroid = new FacebookAndroid();
         
         initialize(new GameContainer(platformSpecificAndroid, facebookAndroid), config);
     }
@@ -31,31 +31,26 @@ public class AndroidLauncher extends AndroidApplication {
     @Override
     protected void onResume() {
         super.onResume();
-        facebookAndroid.onResume();
     }
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        facebookAndroid.onActivityResult(requestCode, resultCode, data);
     }
     
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        facebookAndroid.onSaveInstanceState(outState);
     }
     
     @Override
     protected void onPause() {
         super.onPause();
-        facebookAndroid.onPause();
     }
     
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        facebookAndroid.onDestroy();
     }
     
 //    public void printHashKey() {

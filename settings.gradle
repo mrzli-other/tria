@@ -1,2 +1,2 @@
 include 'desktop', 'android', 'core', 'gamelibrary'
-project(':gamelibrary').projectDir = new File('../LibgdxGameLibrary')
+project(':gamelibrary').projectDir = new File('../libgdxgamelibrary')

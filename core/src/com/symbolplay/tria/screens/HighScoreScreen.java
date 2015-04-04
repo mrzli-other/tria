@@ -110,7 +110,7 @@ public final class HighScoreScreen extends ScreenBase {
         tabButtonsTable.add(facebookButton).width(TAB_BUTTON_WIDTH).padLeft(padding);
         guiStage.addActor(tabButtonsTable);
         
-        new ButtonGroup(localButton, facebookButton);
+        new ButtonGroup<TextButton>(localButton, facebookButton);
         
         return TAB_BUTTON_HEIGHT + padding;
     }

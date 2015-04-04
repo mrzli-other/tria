@@ -11,11 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.symbolplay.tria.persistence.userdata.HighScoreData;
 import com.symbolplay.tria.resources.ResourceNames;
 
-public final class FacebookScoreEntryControl extends Group {
+public final class GlobalScoreEntryControl extends Group {
     
-    public FacebookScoreEntryControl(FinalFriendScoreData scoreData, int topScore, int rank, float parentWidth, Skin guiSkin, AssetManager assetManager) {
+    public GlobalScoreEntryControl(HighScoreData scoreData, int topScore, int rank, float parentWidth, Skin guiSkin, AssetManager assetManager) {
         
         Table entryTable = getEntryTable(scoreData, rank, parentWidth, guiSkin);
         setSize(entryTable.getWidth(), entryTable.getHeight());
@@ -37,7 +38,7 @@ public final class FacebookScoreEntryControl extends Group {
         
     }
     
-    private Table getEntryTable(FinalFriendScoreData scoreData, int rank, float parentWidth, Skin guiSkin) {
+    private Table getEntryTable(HighScoreData scoreData, int rank, float parentWidth, Skin guiSkin) {
         float entryPadding = 10.0f;
         float entryRankWidth = 56.0f;
         float entryScoreWidth = 160.0f;
@@ -54,8 +55,7 @@ public final class FacebookScoreEntryControl extends Group {
         highScoreIndexLabel.setAlignment(Align.center);
         table.add(highScoreIndexLabel).width(entryRankWidth);
         
-        String nameText = scoreData.isCurrentUser() ? scoreData.getName() + " (You)" : scoreData.getName();
-        Label highScoreNameLabel = new Label(nameText, entryLabelStyle);
+        Label highScoreNameLabel = new Label(scoreData.getName(), entryLabelStyle);
         highScoreNameLabel.setAlignment(Align.left);
         table.add(highScoreNameLabel).width(entryNameWidth).padLeft(entryPadding).padRight(entryPadding);
         

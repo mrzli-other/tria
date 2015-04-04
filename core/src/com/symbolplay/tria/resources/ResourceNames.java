@@ -27,10 +27,6 @@ public final class ResourceNames {
     public static final String GUI_MAIN_MENU_CREDITS_BUTTON_IMAGE_NAME = GRAPHICS_GUI_ATLAS_MAIN_MENU_PREFIX + "creditsbutton";
     public static final String GUI_MAIN_MENU_INSTRUCTIONS_BUTTON_IMAGE_NAME = GRAPHICS_GUI_ATLAS_MAIN_MENU_PREFIX + "instructionsbutton";
     public static final String GUI_MAIN_MENU_INSTRUCTIONS_BUTTON_HIGHLIGHT_IMAGE_NAME = GRAPHICS_GUI_ATLAS_MAIN_MENU_PREFIX + "instructionsbuttonhighlight";
-    public static final String GUI_MAIN_MENU_FACEBOOK_LOGIN_BUTTON_IMAGE_NAME = GRAPHICS_GUI_ATLAS_MAIN_MENU_PREFIX + "facebookloginbutton";
-    public static final String GUI_MAIN_MENU_FACEBOOK_LOGOUT_BUTTON_IMAGE_NAME = GRAPHICS_GUI_ATLAS_MAIN_MENU_PREFIX + "facebooklogoutbutton";
-    public static final String GUI_MAIN_MENU_FACEBOOK_LOGIN_BUTTON_DISABLED_IMAGE_NAME = GRAPHICS_GUI_ATLAS_MAIN_MENU_PREFIX + "facebookloginbuttondisabled";
-    public static final String GUI_MAIN_MENU_FACEBOOK_LOGOUT_BUTTON_DISABLED_IMAGE_NAME = GRAPHICS_GUI_ATLAS_MAIN_MENU_PREFIX + "facebooklogoutbuttondisabled";
     
     private static final String GRAPHICS_GUI_ATLAS_NEWS_PREFIX = "news/";
     public static final String GUI_NEWS_NEWS_SEPARATOR_IMAGE_NAME = GRAPHICS_GUI_ATLAS_NEWS_PREFIX + "newsseparator";

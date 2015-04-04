@@ -96,7 +96,7 @@ public final class OptionsScreen extends ScreenBase {
         Label scoreLinesLabel = new Label("Score lines:", guiSkin, "font24");
         
         scoreLinesSelectBox = new SelectBox<String>(guiSkin, "font24");
-        scoreLinesSelectBox.setItems(ScoreLines.NONE, ScoreLines.LOCAL, ScoreLines.FACEBOOK);
+        scoreLinesSelectBox.setItems(ScoreLines.NONE, ScoreLines.LOCAL, ScoreLines.GLOBAL);
         scoreLinesSelectBox.addListener(new ChangeListener() {
             
             @SuppressWarnings("rawtypes")

@@ -22,9 +22,7 @@ public class DesktopLauncher {
             System.out.println("FINSIHED PACKING TEXTURES...");
         } else {
             PlatformSpecificDesktop platformSpecificDesktop = new PlatformSpecificDesktop();
-            FacebookDesktop facebookDesktop = new FacebookDesktop();
-            
-            new LwjglApplication(new GameContainer(platformSpecificDesktop, facebookDesktop), config);
+            new LwjglApplication(new GameContainer(platformSpecificDesktop, 0), config);
         }
     }
     

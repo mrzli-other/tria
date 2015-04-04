@@ -20,7 +20,6 @@ import com.symbolplay.tria.net.NewsListener;
 import com.symbolplay.tria.persistence.gamepreferences.GamePreferencesWrapper;
 import com.symbolplay.tria.resources.ResourceNames;
 import com.symbolplay.tria.screens.general.ChangeParamKeys;
-import com.symbolplay.tria.screens.general.FacebookLoginButton;
 
 public final class MainMenuScreen extends ScreenBase {
     
@@ -34,7 +33,6 @@ public final class MainMenuScreen extends ScreenBase {
     
     private static final int CONFIRM_DIALOG_TARGET_NONE = 0;
     private static final int CONFIRM_DIALOG_TARGET_COMPANY = 1;
-    private static final int CONFIRM_DIALOG_TARGET_FACEBOOK_LOGOUT = 2;
     
     private final GameBackground background;
     
@@ -42,7 +40,6 @@ public final class MainMenuScreen extends ScreenBase {
     private final HighlightImageButton newsButton;
     private final HighlightImageButton creditsButton;
     private final HighlightImageButton howToPlayButton;
-    private final FacebookLoginButton facebookLoginButton;
     
     private final NewsAccessor newsAccessor;
     
@@ -102,19 +99,6 @@ public final class MainMenuScreen extends ScreenBase {
         howToPlayButton.addListener(getMenuButtonClickListener(GameContainer.HOW_TO_PLAY_SCREEN_NAME));
         guiStage.addActor(howToPlayButton);
         
-        facebookLoginButton = new FacebookLoginButton(
-                howToPlayButton.getRight() + BOTTOM_CONTROLS_PADDING,
-                BOTTOM_CONTROLS_PADDING,
-                atlas,
-                game.getFacebookAccessor()) {
-            
-            @Override
-            public void startLogoutProcedure() {
-                MainMenuScreen.this.startLogoutProcedure();
-            }
-        };
-        guiStage.addActor(facebookLoginButton);
-        
         // menu buttons
         TextButton startButton = new TextButton("START", guiSkin, "font40");
         startButton.setBounds(MENU_BUTTON_X, TOP_BUTTON_Y, MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT);
@@ -171,13 +155,11 @@ public final class MainMenuScreen extends ScreenBase {
     @Override
     public void hide() {
         super.hide();
-        facebookLoginButton.setActive(false);
     }
     
     @Override
     public void pause() {
         super.pause();
-        facebookLoginButton.setActive(false);
     }
     
     @Override
@@ -190,8 +172,6 @@ public final class MainMenuScreen extends ScreenBase {
             if (isConfirmOk) {
                 if (confirmTarget == CONFIRM_DIALOG_TARGET_COMPANY) {
                     goToCompanyAddress();
-                } else if (confirmTarget == CONFIRM_DIALOG_TARGET_FACEBOOK_LOGOUT) {
-                    facebookLoginButton.logout();
                 }
             }
         }
@@ -234,8 +214,6 @@ public final class MainMenuScreen extends ScreenBase {
         
         newsButton.setHighlight(false);
         newsAccessor.requestLastNewsIndex();
-        
-        facebookLoginButton.setActive(true);
     }
     
     private void checkRateRequest() {
@@ -271,15 +249,6 @@ public final class MainMenuScreen extends ScreenBase {
     private void setNewsButtonHighlight(int lastNewsIndex) {
         boolean isNewsButtonHighlight = lastNewsIndex > 0 && lastNewsIndex > gameData.getGamePreferences().getLastNewsShownIndex();
         newsButton.setHighlight(isNewsButtonHighlight);
-    }
-    
-    private void startLogoutProcedure() {
-        if (game.getGameData().getGamePreferences().isConfirmDialogsEnabled()) {
-            confirmTarget = CONFIRM_DIALOG_TARGET_FACEBOOK_LOGOUT;
-            game.pushScreen(GameContainer.CONFIRM_SCREEN_NAME, getChangeParams("Do you wish to logout from Facebook?"));
-        } else {
-            facebookLoginButton.logout();
-        }
     }
     
     private InputListener getStageInputListener() {

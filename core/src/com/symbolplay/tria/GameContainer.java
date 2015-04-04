@@ -7,8 +7,6 @@ import com.symbolplay.gamelibrary.game.GameBase;
 import com.symbolplay.gamelibrary.game.Screen;
 import com.symbolplay.tria.game.Sounds;
 import com.symbolplay.tria.game.Vibration;
-import com.symbolplay.tria.net.FacebookAccessor;
-import com.symbolplay.tria.net.FacebookInterface;
 import com.symbolplay.tria.net.NewsAccessor;
 import com.symbolplay.tria.net.TriaServiceAccessor;
 import com.symbolplay.tria.persistence.GameData;
@@ -58,7 +56,7 @@ public class GameContainer extends GameBase {
     //private FPSLogger mFpsLogger;
     
     private final PlatformSpecificInterface platformSpecificInterface;
-    private final FacebookInterface facebookInterface;
+    private final int appVersion;
     
     private Resources resources;
     private boolean isResourcesLoaded;
@@ -66,12 +64,11 @@ public class GameContainer extends GameBase {
     private CameraData cameraData;
     
     private NewsAccessor newsAccessor;
-    private FacebookAccessor facebookAccessor;
     private TriaServiceAccessor triaServiceAccessor;
     
-    public GameContainer(PlatformSpecificInterface platformSpecificInterface, FacebookInterface facebookInterface) {
+    public GameContainer(PlatformSpecificInterface platformSpecificInterface, int appVersion) {
         this.platformSpecificInterface = platformSpecificInterface;
-        this.facebookInterface = facebookInterface;
+        this.appVersion = appVersion;
     }
     
     @Override
@@ -94,16 +91,11 @@ public class GameContainer extends GameBase {
         
         newsAccessor = new NewsAccessor();
         gameContainerUpdateables.add(newsAccessor);
-        facebookAccessor = new FacebookAccessor(facebookInterface);
-        gameContainerUpdateables.add(facebookAccessor);
         triaServiceAccessor = new TriaServiceAccessor();
         gameContainerUpdateables.add(triaServiceAccessor);
         
         // pre-request some stuff the game will need at some point
         newsAccessor.requestLastNewsIndex();
-        if (facebookAccessor.isLoggedIn()) {
-            facebookAccessor.requestProfileAndFriends();
-        }
         
         addScreen(LOAD_SCREEN_NAME, new LoadScreen(this));
         changeScreen(LOAD_SCREEN_NAME);
@@ -153,8 +145,8 @@ public class GameContainer extends GameBase {
         return platformSpecificInterface;
     }
     
-    public FacebookInterface getFacebookInterface() {
-        return facebookInterface;
+    public int getAppVersion() {
+        return appVersion;
     }
     
     public Resources getResources() {
@@ -171,10 +163,6 @@ public class GameContainer extends GameBase {
     
     public NewsAccessor getNewsAccessor() {
         return newsAccessor;
-    }
-    
-    public FacebookAccessor getFacebookAccessor() {
-        return facebookAccessor;
     }
     
     public TriaServiceAccessor getTriaServiceAccessor() {

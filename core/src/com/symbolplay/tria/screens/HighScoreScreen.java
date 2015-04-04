@@ -22,12 +22,12 @@ public final class HighScoreScreen extends ScreenBase {
     private final GameBackground background;
     
     private TextButton localButton;
-    private TextButton facebookButton;
+    private TextButton globalButton;
     
     private ScrollPane scrollPane;
     
     private final HighScoreLocalSubscreen highScoreLocalSubscreen;
-    private final HighScoreFacebookSubscreen highScoreFacebookSubscreen;
+    private final HighScoreGlobalSubscreen highScoreGlobalSubscreen;
     
     public HighScoreScreen(GameContainer game) {
         super(game);
@@ -45,11 +45,10 @@ public final class HighScoreScreen extends ScreenBase {
                 guiSkin,
                 scrollPane,
                 game.getGameData());
-        highScoreFacebookSubscreen = new HighScoreFacebookSubscreen(
+        highScoreGlobalSubscreen = new HighScoreGlobalSubscreen(
                 assetManager,
                 guiSkin,
                 scrollPane,
-                game.getFacebookAccessor(),
                 game.getTriaServiceAccessor());
     }
     
@@ -62,7 +61,7 @@ public final class HighScoreScreen extends ScreenBase {
     @Override
     protected void updateImpl(float delta) {
         super.updateImpl(delta);
-        highScoreFacebookSubscreen.update(delta);
+        highScoreGlobalSubscreen.update(delta);
     }
     
     @Override
@@ -94,23 +93,23 @@ public final class HighScoreScreen extends ScreenBase {
             }
         });
         
-        facebookButton = new TextButton("FACEBOOK", guiSkin, "font24-checked");
-        facebookButton.setSize(TAB_BUTTON_WIDTH, TAB_BUTTON_HEIGHT);
-        facebookButton.addListener(new ChangeListener() {
+        globalButton = new TextButton("GLOBAL", guiSkin, "font24-checked");
+        globalButton.setSize(TAB_BUTTON_WIDTH, TAB_BUTTON_HEIGHT);
+        globalButton.addListener(new ChangeListener() {
             
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 if (((TextButton) actor).isChecked()) {
-                    selectFacebookSubscreen();
+                    selectGlobalSubscreen();
                 }
             }
         });
         
         tabButtonsTable.add(localButton).width(TAB_BUTTON_WIDTH).padLeft(padding);
-        tabButtonsTable.add(facebookButton).width(TAB_BUTTON_WIDTH).padLeft(padding);
+        tabButtonsTable.add(globalButton).width(TAB_BUTTON_WIDTH).padLeft(padding);
         guiStage.addActor(tabButtonsTable);
         
-        new ButtonGroup<TextButton>(localButton, facebookButton);
+        new ButtonGroup<TextButton>(localButton, globalButton);
         
         return TAB_BUTTON_HEIGHT + padding;
     }
@@ -132,13 +131,13 @@ public final class HighScoreScreen extends ScreenBase {
 //    }
     
     private void selectLocalSubscreen() {
-        highScoreFacebookSubscreen.unselectSubscreen();
+        highScoreGlobalSubscreen.unselectSubscreen();
         highScoreLocalSubscreen.selectSubscreen();
     }
     
-    private void selectFacebookSubscreen() {
+    private void selectGlobalSubscreen() {
         highScoreLocalSubscreen.unselectSubscreen();
-        highScoreFacebookSubscreen.selectSubscreen();
+        highScoreGlobalSubscreen.selectSubscreen();
     }
     
     private static InputListener getStageInputListener(final HighScoreScreen screen) {

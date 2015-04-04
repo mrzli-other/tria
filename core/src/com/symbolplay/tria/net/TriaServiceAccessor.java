@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.symbolplay.gamelibrary.game.GameContainerUpdateable;
 import com.symbolplay.gamelibrary.net.HttpRequestTask;
 import com.symbolplay.gamelibrary.net.HttpRequestTaskFinishedListener;
@@ -15,6 +14,7 @@ import com.symbolplay.gamelibrary.util.EncryptionUtil;
 import com.symbolplay.gamelibrary.util.HexUtils;
 import com.symbolplay.gamelibrary.util.Logger;
 import com.symbolplay.tria.persistence.GameEncryptionKeys;
+import com.symbolplay.tria.persistence.userdata.HighScoreData;
 
 public final class TriaServiceAccessor implements GameContainerUpdateable {
     
@@ -25,7 +25,7 @@ public final class TriaServiceAccessor implements GameContainerUpdateable {
     
     private static final String CHARSET = "UTF-8";
     
-    private Array<TriaServiceScoreData> scoresData;
+    private Array<HighScoreData> scoresData;
     private String errorMessage;
     
     private boolean isScoresReceived;
@@ -79,7 +79,7 @@ public final class TriaServiceAccessor implements GameContainerUpdateable {
                 String scoresDataString = (String) httpRequestTask.getData();
                 if (!StringUtils.isEmpty(scoresDataString)) {
                     try {
-                        Array<TriaServiceScoreData> scoresData = getScoresData(scoresDataString);
+                        Array<HighScoreData> scoresData = getScoresData(scoresDataString);
                         setScoresData(scoresData);
                     } catch (Exception e) {
                         setErrorMessage("Failed to get global scores from the server.");
@@ -95,48 +95,9 @@ public final class TriaServiceAccessor implements GameContainerUpdateable {
         httpRequestTask.start();
     }
     
-    public void requestFacebookScores(Array<String> userIds) {
+    public void publishGlobalScore(String name, int score, int appVersion) {
         
-        Array<QueryParameter> queryParameters = new Array<QueryParameter>(true, userIds.size + 1);
-        queryParameters.add(new QueryParameter("method", "get_facebook_scores"));
-        for (String userId : userIds) {
-            queryParameters.add(new QueryParameter("user_ids[]", String.valueOf(userId)));
-        }
-        
-        final HttpRequestTask httpRequestTask = new HttpRequestTask(
-                "FacebookScoresTask",
-                TRIA_SERVICE_BASE_ADDRESS,
-                queryParameters,
-                false,
-                DEFAULT_SCORES_BUFFER_SIZE,
-                false);
-        
-        httpRequestTask.setFinishedListener(new HttpRequestTaskFinishedListener() {
-            
-            @Override
-            public void httpRequestTaskFinished() {
-                String scoresDataString = (String) httpRequestTask.getData();
-                if (!StringUtils.isEmpty(scoresDataString)) {
-                    try {
-                        Array<TriaServiceScoreData> scoresData = getScoresData(scoresDataString);
-                        setScoresData(scoresData);
-                    } catch (Exception e) {
-                        setErrorMessage("Failed to get Facebook scores from the server.");
-                        Logger.error("Failed to get valid Facebook scores data from the server.");
-                    }
-                } else {
-                    String errorMessage = "Failed to get Facebook scores from the server.";
-                    setErrorMessage(errorMessage);
-                    Logger.error(errorMessage);
-                }
-            }
-        });
-        httpRequestTask.start();
-    }
-    
-    public void publishGlobalAndFacebookScore(String userId, int score) {
-        
-        String queryString = "method=update_score&user_id=" + userId + "&score=" + score;
+        String queryString = "method=add_score&name=" + name + "&score=" + score + "&app_version=" + appVersion;
         
         String encryptedQueryStringValue = null;
         try {
@@ -149,48 +110,13 @@ public final class TriaServiceAccessor implements GameContainerUpdateable {
         }
         
         Array<QueryParameter> queryParameters = new Array<QueryParameter>(true, 1);
-        queryParameters.add(new QueryParameter("encrypted", encryptedQueryStringValue));
+        //queryParameters.add(new QueryParameter("encrypted", encryptedQueryStringValue));
         
-        final HttpRequestTask httpRequestTask = new HttpRequestTask(
-                "UpdateCurrentUserScoreTask",
-                TRIA_SERVICE_BASE_ADDRESS,
-                queryParameters,
-                false,
-                DEFAULT_SCORE_UPDATE_RESULT_BUFFER_SIZE,
-                true);
-        
-        httpRequestTask.setFinishedListener(new HttpRequestTaskFinishedListener() {
-            
-            @Override
-            public void httpRequestTaskFinished() {
-                String updateScoresResultString = (String) httpRequestTask.getData();
-                if (!StringUtils.isEmpty(updateScoresResultString)) {
-                    Logger.info("Update score executed with result: "+ updateScoresResultString);
-                } else {
-                    Logger.error("Failed to publish score to the server.");
-                    // currently we don't set errorMessage in this case
-                }
-            }
-        });
-        httpRequestTask.start();
-    }
-    
-    public void publishFacebookScore(String userId, int score) {
-        
-        String queryString = "method=update_facebook_score&user_id=" + userId + "&score=" + score;
-        
-        String encryptedQueryStringValue = null;
-        try {
-            byte[] queryStringBytes = queryString.getBytes(CHARSET);
-            byte[] encryptedQueryStringBytes = EncryptionUtil.encryptData(queryStringBytes, GameEncryptionKeys.getTriaServiceEncryptionInputData());
-            encryptedQueryStringValue = HexUtils.bytesToHex(encryptedQueryStringBytes);
-        } catch (Exception e) {
-            Logger.error("Failed to encrypt update score query string");
-            return;
-        }
-        
-        Array<QueryParameter> queryParameters = new Array<QueryParameter>(true, 1);
-        queryParameters.add(new QueryParameter("encrypted", encryptedQueryStringValue));
+        // TODO: remove this and use encryption
+        queryParameters.add(new QueryParameter("method", "add_score"));
+        queryParameters.add(new QueryParameter("name", name));
+        queryParameters.add(new QueryParameter("score", String.valueOf(score)));
+        queryParameters.add(new QueryParameter("app_version", String.valueOf(appVersion)));
         
         final HttpRequestTask httpRequestTask = new HttpRequestTask(
                 "UpdateCurrentUserScoreTask",
@@ -217,20 +143,23 @@ public final class TriaServiceAccessor implements GameContainerUpdateable {
     }
     
     @SuppressWarnings("unchecked")
-    private static Array<TriaServiceScoreData> getScoresData(String jsonText) {
+    private static Array<HighScoreData> getScoresData(String jsonText) {
         JsonValue jsonValue = new JsonReader().parse(jsonText);
-        Array<Array<Long>> rawScoresData = (Array<Array<Long>>) JsonReaderUtils.jsonValueToObject(jsonValue);
+        Array<Array<Object>> rawScoresData = (Array<Array<Object>>) JsonReaderUtils.jsonValueToObject(jsonValue);
         
-        Array<TriaServiceScoreData> scoresData = new Array<TriaServiceScoreData>(false, rawScoresData.size);
-        for (Array<Long> rawScoreData : rawScoresData) {
-            TriaServiceScoreData scoreData = new TriaServiceScoreData(rawScoreData.get(0).toString(), rawScoreData.get(1).intValue());
+        Array<HighScoreData> scoresData = new Array<HighScoreData>(false, rawScoresData.size);
+        for (Array<Object> rawScoreData : rawScoresData) {
+            String name = rawScoreData.get(0).toString();
+            int score = Integer.parseInt(rawScoreData.get(1).toString());
+            long time = 0L; // ignore time, scores from server are already sorted
+            HighScoreData scoreData = new HighScoreData(name, score, time); 
             scoresData.add(scoreData);
         }
         
         return scoresData;
     }
     
-    private void setScoresData(Array<TriaServiceScoreData> scoresData) {
+    private void setScoresData(Array<HighScoreData> scoresData) {
         synchronized (scoreLock) {
             this.scoresData = scoresData;
             isScoresReceived = true;
@@ -249,16 +178,14 @@ public final class TriaServiceAccessor implements GameContainerUpdateable {
                 return;
             }
             
-            ObjectMap<String, TriaServiceScoreData> scoreDataMap;
+            Array<HighScoreData> scoresDataCopy;
             if (scoresData != null) {
-                scoreDataMap = new ObjectMap<String, TriaServiceScoreData>(scoresData.size);
-                for (TriaServiceScoreData scoreData : scoresData) {
-                    scoreDataMap.put(scoreData.getUserId(), scoreData);
-                }
+                scoresDataCopy = new Array<HighScoreData>(scoresData.size);
+                scoresDataCopy.addAll(scoresData);
             } else {
-                scoreDataMap = null;
+                scoresDataCopy = null;
             }
-            notifyFriendScoresReceived(scoreDataMap);
+            notifyGlobalScoresReceived(scoresDataCopy);
             
             isScoresReceived = false;
         }
@@ -288,9 +215,9 @@ public final class TriaServiceAccessor implements GameContainerUpdateable {
         scoreListeners.clear();
     }
     
-    private void notifyFriendScoresReceived(ObjectMap<String, TriaServiceScoreData> scoreDataMap) {
+    private void notifyGlobalScoresReceived(Array<HighScoreData> scoresData) {
         for (TriaServiceScoreListener scoreListener : scoreListeners) {
-            scoreListener.scoresReceived(scoreDataMap);
+            scoreListener.scoresReceived(scoresData);
         }
     }
     

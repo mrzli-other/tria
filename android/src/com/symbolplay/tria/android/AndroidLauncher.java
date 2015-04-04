@@ -1,6 +1,8 @@
 package com.symbolplay.tria.android;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -9,8 +11,6 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.symbolplay.tria.GameContainer;
 
 public class AndroidLauncher extends AndroidApplication {
-    
-    private FacebookAndroid facebookAndroid;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +23,17 @@ public class AndroidLauncher extends AndroidApplication {
         config.useCompass = false;
         
         PlatformSpecificAndroid platformSpecificAndroid = new PlatformSpecificAndroid(this);
-        facebookAndroid = new FacebookAndroid();
         
-        initialize(new GameContainer(platformSpecificAndroid, facebookAndroid), config);
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        } catch (NameNotFoundException e) {
+            // do nothing
+        }
+        
+        int appVersion = packageInfo != null ? packageInfo.versionCode : 0;
+        
+        initialize(new GameContainer(platformSpecificAndroid, appVersion), config);
     }
     
     @Override

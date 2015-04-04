@@ -37,7 +37,7 @@ public final class PlayScreen extends ScreenBase {
         
         guiStage.addListener(getStageInputListener());
         
-        PlayScoreAccessor playScoreAccessor = new PlayScoreAccessor(gameData, game.getFacebookAccessor(), game.getTriaServiceAccessor());
+        PlayScoreAccessor playScoreAccessor = new PlayScoreAccessor(gameData, game.getTriaServiceAccessor());
         rise = new Rise(cameraData, gameData.getCareerData(), resources.getGameAreaFont(), playScoreAccessor, assetManager);
         
         addTopDisplay();

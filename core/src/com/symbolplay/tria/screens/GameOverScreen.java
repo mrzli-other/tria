@@ -1,7 +1,5 @@
 package com.symbolplay.tria.screens;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -11,15 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.symbolplay.tria.GameContainer;
 import com.symbolplay.tria.game.background.GameBackground;
-import com.symbolplay.tria.net.FacebookAccessor;
-import com.symbolplay.tria.net.FacebookFriendData;
-import com.symbolplay.tria.net.FacebookLoginStateListener;
-import com.symbolplay.tria.net.FacebookDataListener;
-import com.symbolplay.tria.net.FacebookProfileData;
 import com.symbolplay.tria.net.TriaServiceAccessor;
 import com.symbolplay.tria.screens.general.ChangeParamKeys;
 import com.symbolplay.tria.screens.general.GameScreenUtils;
@@ -28,7 +20,6 @@ public final class GameOverScreen extends ScreenBase {
     
     private static final int NAME_MAX_LENGTH = 20;
     
-    private final FacebookAccessor facebookAccessor;
     private final TriaServiceAccessor triaServiceAccessor;
     
     private final GameBackground background;
@@ -37,35 +28,11 @@ public final class GameOverScreen extends ScreenBase {
     private TextField nameTextField;
     
     private int score;
-    private String userId;
     
     public GameOverScreen(GameContainer game) {
         super(game);
         
         guiStage.addListener(getStageInputListener(this));
-        
-        facebookAccessor = game.getFacebookAccessor();
-        facebookAccessor.addLoginStateListener(new FacebookLoginStateListener() {
-            @Override
-            public void loginStateChanged(boolean isLoggedInState, String loginStatusMessage) {
-                userId = null;
-                setContent(null);
-            }
-        });
-        
-        facebookAccessor.addDataListener(new FacebookDataListener() {
-            
-            @Override
-            public void dataReceived(FacebookProfileData profileData, Array<FacebookFriendData> friendsData) {
-                userId = profileData.getId();
-                setContent(null);
-            }
-            
-            @Override
-            public void dataError(String message) {
-                setContent(message);
-            }
-        });
         
         triaServiceAccessor = game.getTriaServiceAccessor();
         
@@ -86,17 +53,11 @@ public final class GameOverScreen extends ScreenBase {
         guiStage.addActor(continueButton);
         
         score = 0;
-        userId = null;
     }
     
     @Override
     public void show(ObjectMap<String, Object> changeParams) {
         super.show(changeParams);
-        
-        userId = facebookAccessor.getUserId();
-        if (userId == null) {
-            facebookAccessor.requestProfileAndFriends();
-        }
         
         score = (Integer) changeParams.get(ChangeParamKeys.SCORE);
         setContent(null);
@@ -150,22 +111,7 @@ public final class GameOverScreen extends ScreenBase {
             content.add().fillY();
         }
         
-        Label messageLabel = new Label("", guiSkin, "font24");
-        messageLabel.setAlignment(Align.center);
-        messageLabel.setWrap(true);
-        
-        if (StringUtils.isEmpty(customMessage)) {
-            if (userId != null) {
-                messageLabel.setText("Your score will be saved to your Facebook account.");
-            } else {
-                messageLabel.setText("You can login to Facebook on main menu screen to submit score online.");
-            }
-        } else {
-            messageLabel.setText(customMessage);
-        }
-        
         content.row().padTop(10.0f);
-        content.add(messageLabel).width(360.0f).padTop(10.0f);
     }
     
     private static String getOrdinalString(int num) {
@@ -206,10 +152,7 @@ public final class GameOverScreen extends ScreenBase {
             game.changeScreen(GameContainer.MAIN_MENU_SCREEN_NAME);
         }
         
-        // publish to facebook if logged in
-        if (userId != null) {
-            triaServiceAccessor.publishFacebookScore(userId, score);
-        }
+        triaServiceAccessor.publishGlobalScore(name, score, game.getAppVersion());
     }
     
     private static InputListener getStageInputListener(final GameOverScreen loseGameScreen) {

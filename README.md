@@ -47,4 +47,4 @@ All (original) sounds used in the game are taken from [freesound.org](freesound.
 
 ## License
 
-[MIT License](License.txt). Pretty much do what you want with this code and assets. Attribution would be nice but is not a requirement. Please note that font and sounds are work of other people (I only edited some sounds to suit my needs) and have their own licenses (see previous section).
+[MIT License](License.txt). Pretty much do what you want with this code and assets. Attribution would be nice but is not a requirement (you can add a link to [goranm.com](http:\\goranm.com) or this repository). Please note that font and sounds are work of other people (I only edited some sounds to suit my needs) and have their own licenses (see previous section).

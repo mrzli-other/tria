@@ -110,13 +110,12 @@ public final class TriaServiceAccessor implements GameContainerUpdateable {
         }
         
         Array<QueryParameter> queryParameters = new Array<QueryParameter>(true, 1);
-        //queryParameters.add(new QueryParameter("encrypted", encryptedQueryStringValue));
+        queryParameters.add(new QueryParameter("encrypted", encryptedQueryStringValue));
         
-        // TODO: remove this and use encryption
-        queryParameters.add(new QueryParameter("method", "add_score"));
-        queryParameters.add(new QueryParameter("name", name));
-        queryParameters.add(new QueryParameter("score", String.valueOf(score)));
-        queryParameters.add(new QueryParameter("app_version", String.valueOf(appVersion)));
+//        queryParameters.add(new QueryParameter("method", "add_score"));
+//        queryParameters.add(new QueryParameter("name", name));
+//        queryParameters.add(new QueryParameter("score", String.valueOf(score)));
+//        queryParameters.add(new QueryParameter("app_version", String.valueOf(appVersion)));
         
         final HttpRequestTask httpRequestTask = new HttpRequestTask(
                 "UpdateCurrentUserScoreTask",

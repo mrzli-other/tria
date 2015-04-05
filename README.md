@@ -25,3 +25,26 @@ Downloading/installing:
   * Import game projects. In Eclipse select `File->Import...`, then `Gradle->Gradle Project`, then browse to the folder of 'tria' repository and press `Build Model` (in case of problems read on).
   * If it whines that it can't find SDK location for Android, create a file called `local.properties` (or edit existing) in 'tria' folder and add the SDK path line like this one (use your SDK location): `sdk.dir=C:/Tools/Android/android-sdk`. Select all projects for import and click OK.
   * If you different version of Android API than what is used in this project, do the following changes in android project. In `AndroidManifest.xml` change `android:targetSdkVersion` to your version, and do the same in file `project.properties` to `target=android-##` line.
+
+## Credits (for the work of other people)
+
+The font used for this game is:
+
+  * Open Sans font - [www.opensans.com](http://www.opensans.com)
+
+All (original) sounds used in the game are taken from [freesound.org](freesound.org). Please note that some of these were edited and changed in some way for usage in the game. Here is a list of sounds and the links to where the originals can be found:
+
+  * Jump - [Porphyr](http://freesound.org/people/Porphyr/sounds/187567/)
+  * Jump Boost - [plingativator](http://freesound.org/people/plingativator/sounds/188869/)
+  * Coin - [fins](http://freesound.org/people/fins/sounds/146723/)
+  * Item - [cameronmusic](http://freesound.org/people/cameronmusic/sounds/138410/)
+  * Ouch - [under7dude](http://freesound.org/people/under7dude/sounds/163441/)
+  * Saw - [Benboncan](http://freesound.org/people/Benboncan/sounds/60178/)
+  * Spikes - [qubodup](http://freesound.org/people/qubodup/sounds/166535/)
+  * Fall - [silversatyr](http://freesound.org/people/silversatyr/sounds/113366/)
+  * Rocket - [genelythgow](http://freesound.org/people/genelythgow/sounds/203264/)
+  * AG - [peridactyloptrix](http://freesound.org/people/peridactyloptrix/sounds/213384/)
+
+## License
+
+[MIT License](License.txt). Pretty much do what you want with this code and assets. Attribution would be nice but is not a requirement. Please note that font and sounds are work of other people (I only edited some sounds to suit my needs) and have their own licenses (see previous section).

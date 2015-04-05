@@ -63,3 +63,4 @@ build/
 ## Other
 android/proguard
 desktop/userdata
+GameEncryptionKeysActual.txt

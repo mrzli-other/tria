@@ -63,4 +63,3 @@ build/
 ## Other
 android/proguard
 desktop/userdata
-core/src/com/symbolplay/tria/persistence/GameEncryptionKeys.java

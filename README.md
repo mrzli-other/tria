@@ -28,6 +28,8 @@ Downloading/installing:
 
 ## Credits (for the work of other people)
 
+Uses [LibGdx engine](http://libgdx.badlogicgames.com/).
+
 The font used for this game is:
 
   * Open Sans font - [www.opensans.com](http://www.opensans.com)

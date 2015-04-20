@@ -1,5 +1,7 @@
 package com.symbolplay.tria.game.rise;
 
+import java.util.Comparator;
+
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -38,6 +40,9 @@ public final class Rise {
     private static final int ENEMIES_CAPACITY = 50;
     private static final int ITEMS_CAPACITY = 100;
     
+    private static final Comparator<ScoreLineObject> SCORE_LINE_1_COMPARATOR;
+    private static final Comparator<ScoreLineObject> SCORE_LINE_2_COMPARATOR;
+    
     private static final int SPRITE_BATCH_SIZE = 100;
     
     private final AssetManager assetManager;
@@ -71,6 +76,24 @@ public final class Rise {
     private float visibleAreaRelativePositionChange;
     
     private int heightScore;
+    
+    static {
+        SCORE_LINE_1_COMPARATOR = new Comparator<ScoreLineObject>() {
+            
+            @Override
+            public int compare(ScoreLineObject s1, ScoreLineObject s2) {
+                return (int) -Math.signum(s1.getPositionY() - s2.getPositionY());
+            }
+        };
+        
+        SCORE_LINE_2_COMPARATOR = new Comparator<ScoreLineObject>() {
+            
+            @Override
+            public int compare(ScoreLineObject s1, ScoreLineObject s2) {
+                return (int) Math.signum(s1.getPositionY() - s2.getPositionY());
+            }
+        };
+    }
     
     public Rise(CameraData cameraData, CareerData careerData, BitmapFont gameAreaFont, PlayScoreAccessor playScoreAccessor, AssetManager assetManager) {
         
@@ -458,11 +481,32 @@ public final class Rise {
         Array<ScoreLineObject> scoreLines = new Array<ScoreLineObject>(true, playScores.size);
         for (PlayScoreData playScore : playScores) {
             float y = (float) ((float) playScore.getScore() / (float) HEIGHT_SCORE_MULTIPLIER - visibleAreaStrideCount * VISIBLE_AREA_POSITION_STRIDE);
-            ScoreLineObject scoreLine = new ScoreLineObject(y, playScore.getName(), playScore.getScore(), playScore.isCurrentUser(), gameAreaFont, assetManager);
+            ScoreLineObject scoreLine = new ScoreLineObject(y, playScore.getRank(), playScore.getName(), playScore.getScore(), gameAreaFont, assetManager);
             scoreLines.add(scoreLine);
         }
         
-        return scoreLines;
+        if (scoreLines.size < 1) {
+            return scoreLines;
+        }
+        
+        scoreLines.sort(SCORE_LINE_1_COMPARATOR);
+        
+        Array<ScoreLineObject> scoreLinesFiltered = new Array<ScoreLineObject>(true, playScores.size);
+        scoreLinesFiltered.add(scoreLines.first());
+        
+        for (int i = 1; i < scoreLines.size; i++) {
+            ScoreLineObject curr = scoreLines.get(i);
+            float y = curr.getPositionY();
+            float lastY = scoreLinesFiltered.peek().getPositionY();
+            float diffY = lastY - y;
+            if (diffY > 5.0f || y > 1000.0f && diffY > 1.0f) {
+                scoreLinesFiltered.add(curr);
+            }
+        }
+        
+        scoreLinesFiltered.sort(SCORE_LINE_2_COMPARATOR);
+        
+        return scoreLinesFiltered;
     }
     
     private static Array<ScoreLineObject> createEmptyScoreLines() {

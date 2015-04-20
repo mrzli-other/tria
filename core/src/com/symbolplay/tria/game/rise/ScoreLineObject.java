@@ -21,19 +21,19 @@ public final class ScoreLineObject implements RiseObject {
     
     private float y;
     
-    private final String nameText;
+    private final String nameRankText;
     private final String scoreText;
     
-    private final Vector2 nameTextBounds;
+    private final Vector2 nameRankTextBounds;
     // private final Vector2 scoreTextBounds;
     
-    public ScoreLineObject(float y, String name, int score, boolean isCurrentUserScore, BitmapFont gameAreaFont, AssetManager assetManager) {
+    public ScoreLineObject(float y, int rank, String name, int score, BitmapFont gameAreaFont, AssetManager assetManager) {
         
         this.gameAreaFont = gameAreaFont;
         
         this.y = y;
         
-        this.nameText = isCurrentUserScore ? name + " (You)" : name;
+        this.nameRankText = name + " (" + rank + ")";
         this.scoreText = String.valueOf(score);
         
         TextureAtlas atlas = assetManager.get(ResourceNames.BACKGROUND_ATLAS);
@@ -42,8 +42,8 @@ public final class ScoreLineObject implements RiseObject {
         GameUtils.multiplySpriteSize(sprite, GameContainer.PIXEL_TO_METER);
         
         TextBounds textBounds;
-        textBounds = gameAreaFont.getBounds(nameText);
-        nameTextBounds = new Vector2(textBounds.width, textBounds.height);
+        textBounds = gameAreaFont.getBounds(nameRankText);
+        nameRankTextBounds = new Vector2(textBounds.width, textBounds.height);
         
         // textBounds = gameAreaFont.getBounds(scoreText);
         // scoreTextBounds = new Vector2(textBounds.width, textBounds.height);
@@ -58,11 +58,11 @@ public final class ScoreLineObject implements RiseObject {
     }
     
     public void renderText(SpriteBatch batch, float visibleAreaPosition) {
-        float textY = (y + sprite.getHeight() + TEXT_OFFSET_Y - visibleAreaPosition) * GameContainer.METER_TO_PIXEL + nameTextBounds.y;
+        float textY = (y + sprite.getHeight() + TEXT_OFFSET_Y - visibleAreaPosition) * GameContainer.METER_TO_PIXEL + nameRankTextBounds.y;
         float scoreTextX = TEXT_SIDE_OFFSET * GameContainer.METER_TO_PIXEL;
-        float nameTextX = (GameContainer.GAME_AREA_WIDTH - TEXT_SIDE_OFFSET) * GameContainer.METER_TO_PIXEL - nameTextBounds.x;
+        float nameRankTextX = (GameContainer.GAME_AREA_WIDTH - TEXT_SIDE_OFFSET) * GameContainer.METER_TO_PIXEL - nameRankTextBounds.x;
         
-        gameAreaFont.draw(batch, nameText, nameTextX, textY);
+        gameAreaFont.draw(batch, nameRankText, nameRankTextX, textY);
         gameAreaFont.draw(batch, scoreText, scoreTextX, textY);
     }
     

@@ -12,7 +12,7 @@ import com.symbolplay.tria.screens.general.ScoreLines;
 
 public final class PlayScoreAccessor {
     
-    private static final Comparator<PlayScoreData> PLAY_SCORE_DATA_COMPARATOR;
+    private static final Comparator<HighScoreData> HIGH_SCORE_COMPARATOR;
     
     private final GameData gameData;
     private final TriaServiceAccessor triaServiceAccessor;
@@ -20,10 +20,11 @@ public final class PlayScoreAccessor {
     private PlayScoreListener playScoreListener;
     
     static {
-        PLAY_SCORE_DATA_COMPARATOR = new Comparator<PlayScoreData>() {
+        HIGH_SCORE_COMPARATOR = new Comparator<HighScoreData>() {
+            
             @Override
-            public int compare(PlayScoreData sd1, PlayScoreData sd2) {
-                return GameUtils.compareInteger(sd1.getScore(), sd2.getScore());
+            public int compare(HighScoreData s1, HighScoreData s2) {
+                return -GameUtils.compareInteger(s1.getScore(), s2.getScore());
             }
         };
     }
@@ -36,7 +37,7 @@ public final class PlayScoreAccessor {
             
             @Override
             public void scoresReceived(Array<HighScoreData> scoresData) {
-                Array<PlayScoreData> playScoresData = getPlayScoresDataFromHighScoresData(scoresData, false);
+                Array<PlayScoreData> playScoresData = getPlayScoresDataFromHighScoresData(scoresData);
                 notifyScoreReceived(playScoresData);
             }
             
@@ -62,7 +63,7 @@ public final class PlayScoreAccessor {
     
     private void requestLocalScore() {
         Array<HighScoreData> highScoresData = gameData.getAchievementsData().getHighScores();
-        Array<PlayScoreData> playScoresData = getPlayScoresDataFromHighScoresData(highScoresData, true);
+        Array<PlayScoreData> playScoresData = getPlayScoresDataFromHighScoresData(highScoresData);
         notifyScoreReceived(playScoresData);
     }
     
@@ -70,18 +71,21 @@ public final class PlayScoreAccessor {
         triaServiceAccessor.requestGlobalScores();
     }
     
-    private Array<PlayScoreData> getPlayScoresDataFromHighScoresData(Array<HighScoreData> highScoresData, boolean doSort) {
+    private Array<PlayScoreData> getPlayScoresDataFromHighScoresData(Array<HighScoreData> highScoresData) {
+        
+        Array<HighScoreData> highScoresDataSorted = new Array<HighScoreData>(highScoresData);
+        highScoresDataSorted.sort(HIGH_SCORE_COMPARATOR);
+        
         Array<PlayScoreData> playScoresData = new Array<PlayScoreData>(true, highScoresData.size);
+        
+        int rank = 1;
         for (HighScoreData highScoreData : highScoresData) {
             int score = highScoreData.getScore();
             if (score > 0) {
-                PlayScoreData playScoreData = new PlayScoreData(highScoreData.getName(), score, false);
+                PlayScoreData playScoreData = new PlayScoreData(rank, highScoreData.getName(), score);
                 playScoresData.add(playScoreData);
             }
-        }
-        
-        if (doSort) {
-            playScoresData.sort(PLAY_SCORE_DATA_COMPARATOR);
+            rank++;
         }
         
         return playScoresData;
